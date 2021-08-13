@@ -1,0 +1,9 @@
+.title {
+	color: currentColor;
+	display: inline-block;
+	font-size: 1.4rem;
+	letter-spacing: 0.3px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
