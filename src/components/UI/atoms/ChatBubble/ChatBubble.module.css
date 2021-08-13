@@ -1,0 +1,17 @@
+.bubble {
+	background-color: #1976d2;
+	border-radius: 1rem;
+	color: #fff;
+	font-size: 1.4rem;
+	display: inline-block;
+	line-height: 1.5;
+	max-width: 100%;
+	padding: 0.8rem 1.2rem;
+	width: auto;
+	word-break: normal;
+	word-wrap: break-word;
+}
+.bubbleBot {
+	background: rgb(245, 248, 250);
+	color: rgb(65, 65, 65);
+}
