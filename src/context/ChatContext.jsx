@@ -14,13 +14,15 @@ export const ChatProvider = ({ children }) => {
 
 	const toggleChat = () => setChatOpen(!isChatOpen);
 
-	// Clear notifications when close caht
+	// Clear notifications after chat is open
 
 	React.useEffect(() => {
-		if (!isChatOpen) setNotificationCount(0);
+		if (isChatOpen) setNotificationCount(0);
 	}, [isChatOpen]);
 
 	const [messages, setMessages] = React.useState([]);
+
+	const REPLY_TIMEOUT = 400;
 
 	React.useEffect(() => {
 		setMessages([
@@ -34,6 +36,36 @@ export const ChatProvider = ({ children }) => {
 		setNotificationCount(1);
 	}, []);
 
+	const sendMessage = (message) => {
+		console.log(message);
+		setMessages([...messages, { ...message }]);
+	};
+
+	// After customer send a message the bot replies
+	React.useEffect(() => {
+		if (messages[messages.length - 1]?.from === 'customer') {
+			console.log('en effetc');
+			const timeout = window.setTimeout(() => {
+				// Mark as seen the last customer message
+				const updatedMessages = messages.map((message, i) =>
+					i === messages.length - 1
+						? { ...message, seen: true }
+						: message
+				);
+				setMessages([
+					...updatedMessages,
+					{
+						from: 'bot',
+						message:
+							'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+						timestamp: new Date(),
+					},
+				]);
+			}, REPLY_TIMEOUT);
+			return () => window.clearTimeout(timeout);
+		}
+	}, [messages]);
+
 	return (
 		<ChatContext.Provider
 			value={{
@@ -42,6 +74,7 @@ export const ChatProvider = ({ children }) => {
 				notifications: notificationCount,
 				closeChat,
 				openChat,
+				sendMessage,
 				toggleChat,
 			}}
 		>
