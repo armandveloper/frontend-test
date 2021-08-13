@@ -1,0 +1,14 @@
+.avatar {
+	background-size: cover;
+	background-position: 50%;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	color: rgb(65, 65, 65);
+	height: 5.6rem;
+	overflow: hidden;
+	width: 5.6rem;
+}
+.small {
+	width: 2.8rem;
+	height: 2.8rem;
+}
