@@ -3,7 +3,7 @@ import styles from './Message.module.css';
 import BotAvatar from 'components/UI/atoms/BotAvatar';
 import ChatBubble from 'components/UI/atoms/ChatBubble';
 import MessageTimestamp from 'components/UI/atoms/MessageTImestamp';
-import { IMessage } from 'components/models/Message';
+import { IMessage } from 'models/Message';
 
 function Message({ from, message, seen = false, timestamp }) {
 	return (

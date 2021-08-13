@@ -3,7 +3,7 @@
 }
 .body {
 	display: flex;
-	align-items: start;
+	align-items: flex-start;
 }
 .customer {
 	text-align: right;

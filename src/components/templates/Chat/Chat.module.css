@@ -1,0 +1,50 @@
+.wrapper {
+	background-color: #fff;
+	box-shadow: 0 7px 6px 1px rgb(0 0 0 / 16%);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	min-width: 32rem;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: var(--zindex-fixed);
+}
+@media (min-width: 48em) {
+	.wrapper {
+		max-height: 60rem;
+		max-width: 40rem;
+		left: unset;
+		top: unset;
+		bottom: 10rem;
+		right: 2rem;
+	}
+}
+.open {
+	animation: open 0.25s ease;
+}
+.close {
+	animation: close 0.25s ease;
+}
+
+@keyframes open {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes close {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(0);
+	}
+}
