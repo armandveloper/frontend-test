@@ -1,4 +1,5 @@
 .avatar {
+	flex-shrink: 0;
 	background-size: cover;
 	background-position: 50%;
 	border: 2px solid #fff;
@@ -11,4 +12,8 @@
 .small {
 	width: 2.8rem;
 	height: 2.8rem;
+}
+.bottom {
+	align-self: flex-end;
+	margin-right: 0.5rem;
 }

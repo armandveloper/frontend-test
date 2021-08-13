@@ -14,8 +14,8 @@ BotMessage.args = {
 	message: 'Hello, I am here to help you if you have any questions.',
 };
 
-export const UserMessage = Template.bind({});
+export const CustomerMessage = Template.bind({});
 
-UserMessage.args = {
+CustomerMessage.args = {
 	message: 'Hi, I want to know about...',
 };

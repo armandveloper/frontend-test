@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import styles from './BotAvatar.module.css';
 import botImg from 'assets/icons/bot.svg';
 
-function BotAvatar({ size = 'md' }) {
+function BotAvatar({ bottom = false, size = 'md' }) {
 	return (
 		<div
-			className={`${styles.avatar} ${size === 'sm' ? styles.small : ''}`}
+			className={`${styles.avatar} ${bottom ? styles.bottom : ''} ${
+				size === 'sm' ? styles.small : ''
+			}`}
 			style={{
 				backgroundImage: `url(${botImg})`,
 			}}
@@ -14,6 +16,7 @@ function BotAvatar({ size = 'md' }) {
 }
 
 BotAvatar.propTypes = {
+	bottom: PropTypes.bool,
 	size: PropTypes.oneOf(['sm', 'md']),
 };
 

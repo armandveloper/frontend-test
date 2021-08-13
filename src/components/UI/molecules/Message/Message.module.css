@@ -1,0 +1,24 @@
+.message {
+	margin-bottom: 1.2rem;
+}
+.body {
+	display: flex;
+	align-items: start;
+}
+.customer {
+	text-align: right;
+}
+.bodyCustomer {
+	justify-content: flex-end;
+}
+.seen {
+	color: #353f45;
+	transition: 0.15s ease;
+}
+.seen > *:first-child {
+	left: 0.5rem;
+	position: relative;
+}
+.hasSeen {
+	color: var(--primary-color);
+}
