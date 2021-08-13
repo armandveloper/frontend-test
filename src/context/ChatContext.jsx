@@ -33,26 +33,18 @@ export const ChatProvider = ({ children }) => {
 				timestamp: new Date(),
 			},
 		]);
-		setNotificationCount(1);
 	}, []);
 
-	const sendMessage = (message) => {
-		console.log(message);
-		setMessages([...messages, { ...message }]);
-	};
-
-	// After customer send a message the bot replies
-	React.useEffect(() => {
-		if (messages[messages.length - 1]?.from === 'customer') {
-			console.log('en effetc');
-			const timeout = window.setTimeout(() => {
+	const replyMessage = () => {
+		window.setTimeout(() => {
+			setMessages((messages) => {
 				// Mark as seen the last customer message
 				const updatedMessages = messages.map((message, i) =>
 					i === messages.length - 1
 						? { ...message, seen: true }
 						: message
 				);
-				setMessages([
+				return [
 					...updatedMessages,
 					{
 						from: 'bot',
@@ -60,22 +52,61 @@ export const ChatProvider = ({ children }) => {
 							'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
 						timestamp: new Date(),
 					},
-				]);
-			}, REPLY_TIMEOUT);
-			return () => window.clearTimeout(timeout);
-		}
-	}, [messages]);
+				];
+			});
+		}, REPLY_TIMEOUT);
+	};
 
-	// If the bot reploes when the chat is closed, notify it
+	const sendMessage = (message) => {
+		setMessages((messages) => [...messages, { ...message }]);
+		replyMessage();
+	};
+
+	// Mark as seen the bot messages, when the customer open the chat
 	React.useEffect(() => {
-		if (messages[messages.length - 1]?.from === 'bot' && !isChatOpen) {
-			setNotificationCount((notifications) => notifications + 1);
+		const updateMessages = (messages) =>
+			messages.map((message) =>
+				message.from === 'bot' && !message.seen
+					? { ...message, seen: true }
+					: message
+			);
+		if (isChatOpen) {
+			setMessages(updateMessages);
+		}
+	}, [isChatOpen]);
+
+	// Notify new messages
+	React.useEffect(() => {
+		if (!isChatOpen) {
+			setNotificationCount(
+				messages.reduce(
+					(acc, current) =>
+						current.from === 'bot' && !current.seen
+							? acc + 1
+							: acc + 0,
+					0
+				)
+			);
 		}
 	}, [messages, isChatOpen]);
+
+	const [isBotWriting, setBotWriting] = React.useState(true);
+
+	// Update the isBotWriting state
+	React.useEffect(() => {
+		// Bot will reply, then isBotWriting update to true
+		if (messages[messages.length - 1]?.from === 'customer') {
+			setBotWriting(true);
+		} else {
+			// Bot finished its reply, then isBotWriting update to false
+			setBotWriting(false);
+		}
+	}, [messages]);
 
 	return (
 		<ChatContext.Provider
 			value={{
+				isBotWriting,
 				isChatOpen,
 				messages,
 				notifications: notificationCount,

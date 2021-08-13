@@ -7,7 +7,7 @@ import ChatBottom from 'components/UI/organisms/ChatBottom';
 import { useChatContext } from 'context/ChatContext';
 
 function Chat({ open = false }) {
-	const { messages } = useChatContext();
+	const { isBotWriting, messages } = useChatContext();
 
 	// State for handle in / out animations
 	const [shouldRender, setRender] = React.useState(open);
@@ -28,7 +28,7 @@ function Chat({ open = false }) {
 			onAnimationEnd={handleAnimationEnd}
 		>
 			<ChatHeader />
-			<MessageList messages={messages} />
+			<MessageList isBotWriting={isBotWriting} messages={messages} />
 			<ChatBottom />
 		</div>
 	);
