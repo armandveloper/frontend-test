@@ -1,0 +1,17 @@
+.textarea {
+	background: var(--text-primary);
+	border-color: rgb(157, 169, 176);
+	color: rgb(65, 65, 65);
+	display: inline-block;
+	font-family: inherit;
+	font-size: 1.6rem;
+	height: 5rem;
+	overflow: auto;
+	padding: 0.5rem 1rem;
+	resize: none;
+	width: 100%;
+}
+.textarea:focus {
+	outline: none;
+	box-shadow: 0 0 0 1px var(--primary-color);
+}
