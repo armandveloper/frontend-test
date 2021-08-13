@@ -1,0 +1,26 @@
+.chatbotFab {
+	background-color: #1976d2;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+		0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+	color: #fff;
+	cursor: pointer;
+	font-family: inherit;
+	height: 5.6rem;
+	margin: 0;
+	padding: 0;
+	width: 5.6rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	right: 2rem;
+	bottom: 2rem;
+	z-index: 1000;
+	transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.chatbotFab:hover {
+	background-color: #115293;
+}
