@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import { MdCheck } from 'react-icons/md';
-import { validUsers } from 'constants';
 import styles from './Message.module.css';
 import BotAvatar from 'components/UI/atoms/BotAvatar';
 import ChatBubble from 'components/UI/atoms/ChatBubble';
 import MessageTimestamp from 'components/UI/atoms/MessageTImestamp';
+import { IMessage } from 'components/models/Message';
 
 function Message({ from, message, seen = false, timestamp }) {
 	return (
@@ -32,11 +31,6 @@ function Message({ from, message, seen = false, timestamp }) {
 	);
 }
 
-Message.propTypes = {
-	from: PropTypes.oneOf(validUsers).isRequired,
-	message: PropTypes.string.isRequired,
-	seen: PropTypes.bool,
-	timestamp: PropTypes.instanceOf(Date).isRequired,
-};
+Message.propTypes = IMessage;
 
 export default Message;
