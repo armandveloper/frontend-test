@@ -14,6 +14,7 @@
 
 	/* Stack content */
 	--zindex-fixed: 1030;
+	--zindex-popover: 1040;
 }
 html {
 	box-sizing: border-box;

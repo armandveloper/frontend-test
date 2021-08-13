@@ -6,12 +6,6 @@ const ChatContext = React.createContext({});
 export const ChatProvider = ({ children }) => {
 	const [messages, setMessages] = React.useState([]);
 
-	const [isChatOpen, setChatOpen] = React.useState(false);
-
-	const openChat = () => setChatOpen(true);
-
-	const closeChat = () => setChatOpen(false);
-
 	React.useEffect(() => {
 		setMessages({
 			from: 'bot',
@@ -20,6 +14,14 @@ export const ChatProvider = ({ children }) => {
 		});
 	}, []);
 
+	const [isChatOpen, setChatOpen] = React.useState(false);
+
+	const openChat = () => setChatOpen(true);
+
+	const closeChat = () => setChatOpen(false);
+
+	const toggleChat = () => setChatOpen(!isChatOpen);
+
 	return (
 		<ChatContext.Provider
 			value={{
@@ -27,6 +29,7 @@ export const ChatProvider = ({ children }) => {
 				messages,
 				closeChat,
 				openChat,
+				toggleChat,
 			}}
 		>
 			{children}
