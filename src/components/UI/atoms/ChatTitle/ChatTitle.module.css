@@ -1,8 +1,9 @@
 .title {
+	flex: 1;
 	color: currentColor;
-	display: inline-block;
 	font-size: 1.4rem;
 	letter-spacing: 0.3px;
+	margin: 0 1rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
