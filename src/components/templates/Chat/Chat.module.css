@@ -1,6 +1,5 @@
 .wrapper {
 	background-color: #fff;
-	box-shadow: 0 7px 6px 1px rgb(0 0 0 / 16%);
 	display: flex;
 	flex-direction: column;
 	height: 100%;
@@ -13,15 +12,24 @@
 	right: 0;
 	bottom: 0;
 	z-index: var(--zindex-fixed);
+	transform-origin: right bottom;
 }
 @media (min-width: 48em) {
 	.wrapper {
-		max-height: 60rem;
-		max-width: 40rem;
+		border-radius: 1rem 1rem 0.5rem 0.5rem;
+		box-shadow: var(--chat-widget-shadow);
+		max-height: 45rem;
+		max-width: 35rem;
 		left: unset;
 		top: unset;
 		bottom: 10rem;
 		right: 2rem;
+	}
+}
+@media (min-width: 62em) {
+	.wrapper {
+		max-height: 60rem;
+		max-width: 40rem;
 	}
 }
 .open {

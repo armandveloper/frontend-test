@@ -1,8 +1,15 @@
-import ChatComponent from '.';
+import Chat from '.';
 
 export default {
 	title: 'Templates/Chat',
-	component: ChatComponent,
+	component: Chat,
 };
 
-export const Chat = () => <ChatComponent />;
+const Template = (args) => <Chat {...args} />;
+
+export const Open = Template.bind({});
+Open.args = {
+	open: true,
+};
+
+export const Close = Template.bind({});
