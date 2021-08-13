@@ -5,7 +5,7 @@ import ChatTitle from 'components/UI/atoms/ChatTitle';
 
 function ChatHeader() {
 	return (
-		<div className={styles.header}>
+		<header className={styles.header}>
 			<BotAvatar size="sm" />
 			<ChatTitle />
 			<MdClose
@@ -15,7 +15,7 @@ function ChatHeader() {
 				title="CLose Chat"
 				aria-label="Close Chat"
 			/>
-		</div>
+		</header>
 	);
 }
 

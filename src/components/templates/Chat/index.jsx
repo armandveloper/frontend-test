@@ -4,6 +4,7 @@ import { messages } from 'data';
 import styles from './Chat.module.css';
 import ChatHeader from 'components/UI/molecules/ChatHeader';
 import MessageList from 'components/UI/organisms/MessageList';
+import ChatBottom from 'components/UI/organisms/ChatBottom';
 
 function Chat({ open = false }) {
 	// State for handle in / out animations
@@ -26,9 +27,7 @@ function Chat({ open = false }) {
 		>
 			<ChatHeader />
 			<MessageList messages={messages} />
-			<div>
-				<p>Footer</p>
-			</div>
+			<ChatBottom />
 		</div>
 	);
 }

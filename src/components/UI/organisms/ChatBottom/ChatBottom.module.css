@@ -1,0 +1,14 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr repeat(2, 2.4rem);
+	gap: 0.8rem;
+	align-items: center;
+	padding: 0 1.6rem 1.6rem;
+}
+.btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+}
