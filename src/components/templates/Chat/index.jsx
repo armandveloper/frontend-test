@@ -1,12 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { messages } from 'data';
 import styles from './Chat.module.css';
 import ChatHeader from 'components/UI/molecules/ChatHeader';
 import MessageList from 'components/UI/organisms/MessageList';
 import ChatBottom from 'components/UI/organisms/ChatBottom';
+import { useChatContext } from 'context/ChatContext';
 
 function Chat({ open = false }) {
+	const { messages } = useChatContext();
+
 	// State for handle in / out animations
 	const [shouldRender, setRender] = React.useState(open);
 
