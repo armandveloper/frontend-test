@@ -1,7 +1,7 @@
 import ChatBotFabComponent from '.';
 
 export default {
-	title: 'Atoms/ChatBotFab',
+	title: 'Molecules/ChatBotFab',
 	component: ChatBotFabComponent,
 };
 
