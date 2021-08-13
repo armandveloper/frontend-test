@@ -22,7 +22,7 @@ export const ChatProvider = ({ children }) => {
 
 	const [messages, setMessages] = React.useState([]);
 
-	const REPLY_TIMEOUT = 400;
+	const REPLY_TIMEOUT = 3000;
 
 	React.useEffect(() => {
 		setMessages([
@@ -65,6 +65,13 @@ export const ChatProvider = ({ children }) => {
 			return () => window.clearTimeout(timeout);
 		}
 	}, [messages]);
+
+	// If the bot reploes when the chat is closed, notify it
+	React.useEffect(() => {
+		if (messages[messages.length - 1]?.from === 'bot' && !isChatOpen) {
+			setNotificationCount((notifications) => notifications + 1);
+		}
+	}, [messages, isChatOpen]);
 
 	return (
 		<ChatContext.Provider
