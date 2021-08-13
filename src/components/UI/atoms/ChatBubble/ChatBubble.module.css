@@ -1,7 +1,7 @@
 .bubble {
-	background-color: #1976d2;
+	background-color: var(--primary-color);
 	border-radius: 1rem;
-	color: #fff;
+	color: var(--text-primary);
 	font-size: 1.4rem;
 	display: inline-block;
 	line-height: 1.5;
@@ -12,6 +12,6 @@
 	word-wrap: break-word;
 }
 .bubbleBot {
-	background: rgb(245, 248, 250);
-	color: rgb(65, 65, 65);
+	background: var(--light-gray);
+	color: #414141;
 }

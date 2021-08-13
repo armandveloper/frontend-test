@@ -1,7 +1,7 @@
 .badge {
 	border-radius: 1rem;
-	color: #fff;
-	background-color: rgb(220, 0, 78);
+	color: var(--text-primary);
+	background-color: var(--secondary-color);
 	font-size: 1.2rem;
 	font-weight: 500;
 	height: 2rem;
