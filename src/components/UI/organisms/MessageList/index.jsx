@@ -14,7 +14,7 @@ function MessageList({ messages }) {
 }
 
 MessageList.propTypes = {
-	messages: PropTypes.arrayOf(IMessage).isRequired,
+	messages: PropTypes.arrayOf(PropTypes.shape(IMessage)).isRequired,
 };
 
 export default MessageList;
