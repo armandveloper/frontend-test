@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { botReplies } from 'data';
+import notificationTone from 'assets/audio/notification.wav';
 
 const ChatContext = React.createContext({});
 
@@ -24,19 +25,19 @@ export const ChatProvider = ({ children }) => {
 		const index = window.Math.floor(
 			window.Math.random() * (botReplies.length - 0) + 0
 		);
-		console.log('index', index);
 		return botReplies[index];
 	};
 
 	const [messages, setMessages] = React.useState([]);
 
-	const REPLY_TIMEOUT = 3000;
+	const REPLY_TIMEOUT = 400;
 
 	React.useEffect(() => {
 		setMessages([
 			{
 				from: 'bot',
 				message: getRandomReply(),
+				seen: false,
 				timestamp: new Date(),
 			},
 		]);
@@ -56,6 +57,7 @@ export const ChatProvider = ({ children }) => {
 					{
 						from: 'bot',
 						message: getRandomReply(),
+						seen: isChatOpen, // Assumes that if the chat is open, the user has read the message.
 						timestamp: new Date(),
 					},
 				];
@@ -68,16 +70,32 @@ export const ChatProvider = ({ children }) => {
 		replyMessage();
 	};
 
+	// Mark as seen the latest bot message if the customer has open the chat
+	React.useEffect(() => {
+		const lastMessage = messages[messages.length - 1];
+		if (isChatOpen && lastMessage?.from === 'bot' && !lastMessage?.seen) {
+			const updateMessages = (messages) => {
+				return messages.map((message, i) =>
+					i === messages.length - 1
+						? { ...message, seen: true }
+						: message
+				);
+			};
+			setMessages(updateMessages);
+		}
+	}, [isChatOpen, messages]);
+
+	const markAsSeenBotMessages = (messages) =>
+		messages.map((message) =>
+			message.from === 'bot' && !message.seen
+				? { ...message, seen: true }
+				: message
+		);
+
 	// Mark as seen the bot messages, when the customer open the chat
 	React.useEffect(() => {
-		const updateMessages = (messages) =>
-			messages.map((message) =>
-				message.from === 'bot' && !message.seen
-					? { ...message, seen: true }
-					: message
-			);
 		if (isChatOpen) {
-			setMessages(updateMessages);
+			setMessages(markAsSeenBotMessages);
 		}
 	}, [isChatOpen]);
 
@@ -95,6 +113,18 @@ export const ChatProvider = ({ children }) => {
 			);
 		}
 	}, [messages, isChatOpen]);
+
+	// Play notification tone
+	const playNotificationTone = () => {
+		const sound = new Audio(notificationTone);
+		sound.play();
+	};
+
+	React.useEffect(() => {
+		if (notificationCount > 0) {
+			playNotificationTone();
+		}
+	}, [notificationCount]);
 
 	const [isBotWriting, setBotWriting] = React.useState(true);
 

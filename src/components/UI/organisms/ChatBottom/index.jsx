@@ -14,6 +14,7 @@ function ChatBottom() {
 		sendMessage({
 			from: 'customer',
 			message,
+			seen: false,
 			timestamp: new Date(),
 		});
 		// Clear the textarea
