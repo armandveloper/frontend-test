@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { IMessage } from 'models/Message';
 import styles from './MessageList.module.css';
 import Message from 'components/UI/molecules/Message';
-import { IMessage } from 'models/Message';
+import Typing from 'components/UI/atoms/Typing';
 
 function MessageList({ isBotWriting, messages }) {
 	return (
@@ -9,7 +10,7 @@ function MessageList({ isBotWriting, messages }) {
 			{messages.map((msg, i) => (
 				<Message {...msg} key={i} />
 			))}
-			{isBotWriting && <li>Writing</li>}
+			{isBotWriting && <Typing />}
 		</ul>
 	);
 }
