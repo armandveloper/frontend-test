@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
+import { formatTimestamp } from 'utils/timestamp';
 import styles from './MessageTimestamp.module.css';
 
 function MessageTimestamp({ timestamp }) {
-	return <span className={styles.timestamp}>{timestamp.getTime()}</span>;
+	return (
+		<span className={styles.timestamp}>{formatTimestamp(timestamp)}</span>
+	);
 }
 
 MessageTimestamp.propTypes = {
