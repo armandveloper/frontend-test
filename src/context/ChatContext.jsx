@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { botReplies } from 'data';
 
 const ChatContext = React.createContext({});
 
@@ -15,10 +16,17 @@ export const ChatProvider = ({ children }) => {
 	const toggleChat = () => setChatOpen(!isChatOpen);
 
 	// Clear notifications after chat is open
-
 	React.useEffect(() => {
 		if (isChatOpen) setNotificationCount(0);
 	}, [isChatOpen]);
+
+	const getRandomReply = () => {
+		const index = window.Math.floor(
+			window.Math.random() * (botReplies.length - 0) + 0
+		);
+		console.log('index', index);
+		return botReplies[index];
+	};
 
 	const [messages, setMessages] = React.useState([]);
 
@@ -28,8 +36,7 @@ export const ChatProvider = ({ children }) => {
 		setMessages([
 			{
 				from: 'bot',
-				message:
-					'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+				message: getRandomReply(),
 				timestamp: new Date(),
 			},
 		]);
@@ -48,8 +55,7 @@ export const ChatProvider = ({ children }) => {
 					...updatedMessages,
 					{
 						from: 'bot',
-						message:
-							'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+						message: getRandomReply(),
 						timestamp: new Date(),
 					},
 				];
